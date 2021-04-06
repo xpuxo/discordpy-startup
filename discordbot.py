@@ -14,8 +14,15 @@ async def on_command_error(ctx, error):
 
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+import discord
+
+client = discord.Client()
+
+@client.event
+async def on_reaction_add(reaction, user):
+    # author: リアクションがついたメッセージを書いた人
+    author = reaction.message.author
+    await client.send_message(author, f"{user} さんがリアクションしとるよ")
 
 
 bot.run(token)
