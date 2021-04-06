@@ -14,8 +14,21 @@ async def on_command_error(ctx, error):
 
 
 @bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
+import discord
+from discord_reactor.config.token import token
+
+
+class Reactor(discord.Client):
+    async def on_ready(self):
+        print('Logged in as')
+        print(self.user.name)
+        print(self.user.id)
+        print('------')
+
+    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
+        author = reaction.message.author
+        await author.send(f"{user} さんがリアクションをしました")
+        print(f"sent message to {author}")
 
 
 bot.run(token)
