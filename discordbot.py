@@ -21,9 +21,10 @@ async def ping(ctx):
     
     
 @bot.command()
-async def on_reaction_add(reaction, user):
-    author = reaction.message.author
-    await client.send_message(author, f"{user} さんがリアクションをしました")    
+    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
+        author = reaction.message.author
+        await author.send(f"{user} さんがリアクションをしました")
+        print(f"sent message to {author}")
 
 
 bot.run(token)
