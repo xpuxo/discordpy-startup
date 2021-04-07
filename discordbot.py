@@ -8,6 +8,12 @@ token = os.environ['DISCORD_BOT_TOKEN']
 client = discord.Client()
 
 
+@client.event
+    nnasync def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
+        author = reaction.message.author
+        await author.send(f"{user} さんがリアクションをしました")
+        print(f"sent message to {author}")
+
 @bot.event
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
@@ -18,13 +24,6 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
-    
-    
-@bot.command()
-    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
-        author = reaction.message.author
-        await author.send(f"{user} さんがリアクションをしました")
-        print(f"sent message to {author}")
 
 
 bot.run(token)
