@@ -20,9 +20,8 @@ async def ping(ctx):
     await ctx.send('pong')
     
     
-@client.event
+@bot.command()
 async def on_reaction_add(reaction, user):
-    # author: リアクションがついたメッセージを書いた人
     author = reaction.message.author
     await client.send_message(author, f"{user} さんがリアクションをしました")    
 
