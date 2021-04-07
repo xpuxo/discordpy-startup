@@ -9,7 +9,7 @@ client = discord.Client()
 
 
 @client.event
-    nnasync def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
+    async def on_reaction_add(self, reaction: discord.Reaction, user: discord.User):
         author = reaction.message.author
         await author.send(f"{user} さんがリアクションをしました")
         print(f"sent message to {author}")
